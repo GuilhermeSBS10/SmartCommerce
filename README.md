@@ -1,4 +1,4 @@
-# ![Logo do SmartCommerce](.Projeto de React/img/LogoSmartCommerce.png) SmartCommerce
+# ![Logo do SmartCommerce](.Projeto-de-React/img/LogoSmartCommerce.png) SmartCommerce
 
 SmartCommerce e uma plataforma de controle financeiro pessoal com foco em clareza, organizacao e experiencia moderna. O projeto combina um frontend em React com um backend em Spring Boot para acompanhar saldo, transacoes, cofrinhos, metas financeiras, perfil do usuario e configuracoes da conta.
 
