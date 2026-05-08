@@ -1,0 +1,399 @@
+.page {
+  animation: fadeIn 0.35s ease forwards;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid rgba(124, 106, 247, 0.35);
+  background: rgba(124, 106, 247, 0.08);
+  color: var(--accent);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.header h1 {
+  font-size: 26px;
+  margin-bottom: 4px;
+}
+
+.header p {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.headerActions,
+.searchRow,
+.confirmActions,
+.mobileActions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.summaryRow,
+.periodSwitch,
+.filtersBar {
+  display: grid;
+  gap: 12px;
+}
+
+.summaryRow {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 16px;
+}
+
+.summaryCard,
+.tableWrap,
+.emptyState,
+.confirmCard,
+.mobileCard,
+.errorState,
+.loadingState {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.summaryCard {
+  padding: 18px;
+}
+
+.summaryCard span {
+  display: block;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+.summaryCard strong {
+  font-size: 22px;
+}
+
+.periodSwitch {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  margin-bottom: 16px;
+}
+
+.periodChip,
+.filterBtn,
+.addBtn,
+.clearBtn,
+.editBtn,
+.deleteBtn,
+.cancelBtn,
+.confirmDeleteBtn,
+.clearSearch {
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+}
+
+.periodChip,
+.filterBtn,
+.addBtn,
+.clearBtn,
+.cancelBtn,
+.confirmDeleteBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.periodChipActive,
+.addBtn,
+.confirmDeleteBtn {
+  background: var(--accent);
+  color: white;
+  border-color: transparent;
+}
+
+.filterBtn:hover,
+.clearBtn:hover,
+.cancelBtn:hover,
+.editBtn:hover,
+.deleteBtn:hover,
+.periodChip:hover {
+  border-color: var(--border-active);
+  background: var(--bg-card-hover);
+}
+
+.addBtn:hover,
+.confirmDeleteBtn:hover,
+.periodChipActive:hover {
+  filter: brightness(1.05);
+}
+
+.filterDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.searchRow {
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.searchBox {
+  position: relative;
+  flex: 1;
+  max-width: 420px;
+}
+
+.searchBox input,
+.filtersBar input,
+.filtersBar select {
+  width: 100%;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 14px;
+}
+
+.searchBox input {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.searchIcon,
+.clearSearch {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.searchIcon {
+  left: 14px;
+  color: var(--text-muted);
+}
+
+.clearSearch {
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+}
+
+.filtersBar {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 16px;
+}
+
+.tableWrap {
+  overflow: hidden;
+}
+
+.loadingState,
+.emptyState,
+.errorState {
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 24px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 16px 18px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.table th {
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.descCell,
+.catCell,
+.dateCell {
+  color: var(--text-secondary);
+}
+
+.valueCell {
+  font-weight: 700;
+}
+
+.actionsCell {
+  display: flex;
+  gap: 8px;
+}
+
+.editBtn,
+.deleteBtn {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.badgeReceita {
+  color: var(--green);
+  background: var(--green-dim);
+}
+
+.badgeDespesa {
+  color: var(--red);
+  background: var(--red-dim);
+}
+
+.positive {
+  color: var(--green);
+}
+
+.negative {
+  color: var(--red);
+}
+
+.mobileList {
+  display: none;
+}
+
+.mobileCard {
+  padding: 16px;
+}
+
+.mobileCard + .mobileCard {
+  margin-top: 12px;
+}
+
+.mobileCardTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.mobileCardTop h3 {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.mobileCardTop p,
+.mobileMeta span {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.mobileMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 17, 23, 0.72);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  z-index: 40;
+}
+
+.confirmCard {
+  max-width: 420px;
+  width: 100%;
+  padding: 24px;
+}
+
+.confirmCard h3 {
+  margin-bottom: 8px;
+}
+
+.confirmCard p {
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 1100px) {
+  .summaryRow,
+  .periodSwitch {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .header,
+  .searchRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filtersBar,
+  .periodSwitch,
+  .summaryRow {
+    grid-template-columns: 1fr;
+  }
+
+  .table {
+    display: none;
+  }
+
+  .mobileList {
+    display: block;
+    padding: 12px;
+  }
+}

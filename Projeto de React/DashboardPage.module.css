@@ -1,0 +1,537 @@
+.page {
+  animation: fadeIn 0.35s ease forwards;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid rgba(124, 106, 247, 0.35);
+  background: rgba(124, 106, 247, 0.08);
+  color: var(--accent);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.hero h1 {
+  font-size: 30px;
+  margin-bottom: 6px;
+}
+
+.hero p {
+  color: var(--text-secondary);
+  max-width: 620px;
+}
+
+.heroActions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.rangeSwitch {
+  display: inline-flex;
+  gap: 8px;
+  padding: 6px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.rangeChip,
+.secondaryAction,
+.primaryAction,
+.iconButton {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+}
+
+.rangeChip,
+.secondaryAction,
+.primaryAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.rangeChip {
+  border-color: transparent;
+  color: var(--text-secondary);
+}
+
+.rangeChipActive {
+  background: var(--accent);
+  color: white;
+}
+
+.secondaryAction {
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+.secondaryAction:hover,
+.iconButton:hover {
+  border-color: var(--border-active);
+  background: var(--bg-card-hover);
+}
+
+.primaryAction {
+  background: var(--accent);
+  color: white;
+  border-color: transparent;
+}
+
+.primaryAction:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.card,
+.insightCard,
+.chartCard,
+.compareCard,
+.goalCard,
+.emptyState,
+.loadingPanel,
+.errorState {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.card {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.cardSaldo {
+  border-color: rgba(124, 106, 247, 0.35);
+}
+
+.cardIcon {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cardLabel {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cardValue {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.positive {
+  color: var(--green) !important;
+}
+
+.negative {
+  color: var(--red) !important;
+}
+
+.insightsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.insightCard {
+  padding: 18px;
+}
+
+.insightLabel {
+  display: block;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.insightCard strong {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+.insightCard p {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.charts,
+.chartsSecondary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.chartCard {
+  padding: 24px;
+}
+
+.chartCard h2 {
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+
+.chartSub {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+}
+
+.comparisonBand {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.compareCard {
+  padding: 18px;
+}
+
+.compareCard span {
+  display: block;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.compareCard strong {
+  display: block;
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+.compareCard p {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.goalsSection {
+  margin-bottom: 24px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.sectionHeader h2 {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.sectionHeader p {
+  color: var(--text-secondary);
+}
+
+.goalsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.goalCard {
+  padding: 20px;
+}
+
+.goalHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.goalType {
+  display: inline-flex;
+  margin-bottom: 10px;
+  color: var(--accent);
+  background: rgba(124, 106, 247, 0.12);
+  border: 1px solid rgba(124, 106, 247, 0.2);
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.goalHeader h3 {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.goalHeader p {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.goalActions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.iconButton {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.actionPill {
+  border: 1px solid var(--border);
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+  border-radius: 12px;
+  padding: 9px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  transition: all var(--transition);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+.actionPill:hover {
+  transform: translateY(-1px);
+}
+
+.actionDeposit {
+  background: linear-gradient(135deg, rgba(0, 208, 158, 0.18), rgba(0, 208, 158, 0.08));
+  border-color: rgba(0, 208, 158, 0.3);
+  color: var(--green);
+}
+
+.actionDeposit:hover {
+  border-color: var(--green);
+}
+
+.actionWithdraw {
+  background: linear-gradient(135deg, rgba(245, 197, 66, 0.18), rgba(245, 197, 66, 0.08));
+  border-color: rgba(245, 197, 66, 0.35);
+  color: #f5c542;
+}
+
+.actionWithdraw:hover {
+  border-color: #f5c542;
+}
+
+.iconButtonSoft:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(124, 106, 247, 0.08);
+}
+
+.iconButtonDanger:hover {
+  border-color: var(--red);
+  color: var(--red);
+  background: var(--red-dim);
+}
+
+.goalMetrics {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.goalMetrics strong {
+  font-size: 24px;
+}
+
+.goalMetrics span {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.goalBar {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.goalBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, #7c6af7 0%, #00d09e 100%);
+  border-radius: inherit;
+}
+
+.goalFooter {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.emptyState,
+.errorState,
+.loadingPanel {
+  padding: 28px;
+  text-align: center;
+}
+
+.emptyIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  background: rgba(124, 106, 247, 0.12);
+}
+
+.emptyState h3,
+.errorState h2,
+.loadingPanel h2 {
+  margin-bottom: 8px;
+}
+
+.emptyState p,
+.errorState p,
+.loadingPanel p {
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.loadingShell {
+  min-height: 70vh;
+  display: grid;
+  place-items: center;
+}
+
+.loadingPanel,
+.errorState {
+  max-width: 420px;
+  margin: 40px auto;
+}
+
+.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 1180px) {
+  .cards,
+  .insightsGrid,
+  .comparisonBand,
+  .goalsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 960px) {
+  .hero,
+  .sectionHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .heroActions {
+    justify-content: flex-start;
+  }
+
+  .charts,
+  .chartsSecondary,
+  .cards,
+  .insightsGrid,
+  .comparisonBand,
+  .goalsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  .chartCard,
+  .goalCard,
+  .compareCard,
+  .insightCard {
+    padding: 18px;
+  }
+
+  .rangeSwitch {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .rangeChip {
+    flex: 1;
+  }
+
+  .goalFooter,
+  .goalMetrics {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

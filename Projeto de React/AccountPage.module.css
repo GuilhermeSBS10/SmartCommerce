@@ -1,0 +1,255 @@
+.page {
+  animation: fadeIn 0.35s ease forwards;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+.hero p {
+  color: var(--text-secondary);
+  max-width: 620px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid rgba(124, 106, 247, 0.35);
+  background: rgba(124, 106, 247, 0.08);
+  color: var(--accent);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.9fr;
+  gap: 18px;
+}
+
+.stack {
+  display: grid;
+  gap: 18px;
+}
+
+.panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+
+.panelHeader {
+  margin-bottom: 18px;
+}
+
+.panelHeader h2 {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.panelHeader p {
+  color: var(--text-secondary);
+}
+
+.form {
+  display: grid;
+  gap: 16px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.field label {
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.field input {
+  width: 100%;
+  border: 1px solid var(--border);
+  background: var(--bg-base);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.primaryButton,
+.secondaryButton,
+.themeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 700;
+  transition: all var(--transition);
+}
+
+.primaryButton {
+  background: var(--accent);
+  color: white;
+}
+
+.secondaryButton {
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.themeCard {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(124, 106, 247, 0.08), rgba(0, 208, 158, 0.08));
+}
+
+.themeCard strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.themeCard p {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.themeButton {
+  border: 1px solid var(--border);
+  min-width: 130px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+.preferences {
+  display: grid;
+  gap: 12px;
+}
+
+.preferenceItem {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-base);
+  color: var(--text-primary);
+  text-align: left;
+}
+
+.preferenceInfo strong {
+  display: block;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.preferenceInfo p {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.switch {
+  position: relative;
+  width: 58px;
+  height: 32px;
+  border-radius: 999px;
+  background: var(--border);
+  transition: all var(--transition);
+}
+
+.switchOn {
+  background: var(--accent);
+}
+
+.switchThumb {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: white;
+  transition: all var(--transition);
+}
+
+.switchOn .switchThumb {
+  transform: translateX(26px);
+}
+
+.securityHint,
+.detailsList {
+  display: grid;
+  gap: 12px;
+}
+
+.detailsItem {
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-base);
+}
+
+.detailsItem span {
+  display: block;
+  color: var(--text-muted);
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.detailsItem strong {
+  font-size: 15px;
+}
+
+@media (max-width: 960px) {
+  .grid,
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    flex-direction: column;
+  }
+
+  .themeCard,
+  .preferenceItem {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
