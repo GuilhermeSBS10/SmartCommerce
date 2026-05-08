@@ -60,7 +60,7 @@ Aplicacao disponivel em `http://localhost:5173`.
 ## Como Rodar o Backend
 
 ```bash
-cd "/Users/guisbs/Desktop/Projeto-Financeiro-Backend-main/financeiro"
+cd "Projeto-Financeiro-Backend-main/financeiro"
 ./mvnw spring-boot:run
 ```
 
