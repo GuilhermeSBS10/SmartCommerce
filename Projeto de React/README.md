@@ -1,4 +1,4 @@
-# SmartCommerce
+# ![Logo do SmartCommerce](./img/LogoSmartCommerce.png) SmartCommerce
 
 ![Logo do SmartCommerce](./img/LogoSmartCommerce.png)
 
