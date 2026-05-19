@@ -2,19 +2,10 @@ package com.example.financeiro;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 
-@SpringBootApplication(exclude = {
-		DataSourceAutoConfiguration.class,
-		HibernateJpaAutoConfiguration.class,
-		FlywayAutoConfiguration.class
-})
+@SpringBootApplication
 public class FinanceiroApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(FinanceiroApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(FinanceiroApplication.class, args);
+    }
 }
