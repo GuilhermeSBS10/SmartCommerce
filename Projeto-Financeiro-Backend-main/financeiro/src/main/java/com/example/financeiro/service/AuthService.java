@@ -34,35 +34,20 @@ public class AuthService {
     public AuthResponse login(LoginRequest request) {
         String email = normalizeEmail(request.email());
         User user = usuarioRepository.findByEmail(email);
-
-        if (user == null || !user.senha().equals(request.senha())) {
+        if (user == null || !user.getSenha().equals(request.senha())) {
             throw new ApiException(HttpStatus.UNAUTHORIZED, "Email ou senha invalidos");
         }
-
         return buildAuthResponse(user);
     }
 
     public MessageResponse recuperarSenha(RecuperarSenhaRequest request) {
         String email = normalizeEmail(request.email());
         User user = usuarioRepository.findByEmail(email);
-
         if (user == null) {
             throw new ApiException(HttpStatus.NOT_FOUND, "Nao encontramos uma conta com esse email");
         }
-
-        usuarioRepository.update(new User(
-                user.id(),
-                user.nome(),
-                user.email(),
-                request.novaSenha(),
-                user.telefone(),
-                user.cpf(),
-                user.theme(),
-                user.notificationsEnabled(),
-                user.compactMode(),
-                user.animationsEnabled()
-        ));
-
+        user.setSenha(request.novaSenha());
+        usuarioRepository.update(user);
         return new MessageResponse("Senha redefinida com sucesso");
     }
 
@@ -70,7 +55,6 @@ public class AuthService {
         if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
             throw new ApiException(HttpStatus.UNAUTHORIZED, "Token nao informado");
         }
-
         String token = authorizationHeader.substring("Bearer ".length()).trim();
         Long userId = usersByToken.get(token);
         User user = userId == null ? null : usuarioRepository.findById(userId);
@@ -82,17 +66,17 @@ public class AuthService {
 
     private AuthResponse buildAuthResponse(User user) {
         String token = UUID.randomUUID().toString();
-        usersByToken.put(token, user.id());
+        usersByToken.put(token, user.getId());
         return new AuthResponse(
-                user.id(),
-                user.nome(),
-                user.email(),
-                user.telefone(),
-                user.cpf(),
-                user.theme(),
-                user.notificationsEnabled(),
-                user.compactMode(),
-                user.animationsEnabled(),
+                user.getId(),
+                user.getNome(),
+                user.getEmail(),
+                user.getTelefone(),
+                user.getCpf(),
+                user.getTheme(),
+                user.isNotificationsEnabled(),
+                user.isCompactMode(),
+                user.isAnimationsEnabled(),
                 token
         );
     }

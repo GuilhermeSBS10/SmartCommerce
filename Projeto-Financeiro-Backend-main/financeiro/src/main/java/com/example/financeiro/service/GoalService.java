@@ -28,40 +28,37 @@ public class GoalService {
     }
 
     public List<GoalResponse> list(User user) {
-        return cofrinhoRepository.findByUserId(user.id()).stream()
-                .sorted(Comparator.comparing(FinancialGoal::prazo))
+        return cofrinhoRepository.findByUserId(user.getId()).stream()
+                .sorted(Comparator.comparing(FinancialGoal::getPrazo, Comparator.nullsLast(Comparator.naturalOrder())))
                 .map(this::toResponse)
                 .toList();
     }
 
     public GoalResponse create(User user, GoalRequest request) {
-        FinancialGoal created = cofrinhoRepository.create(new FinancialGoal(
-                null,
-                user.id(),
-                request.titulo().trim(),
-                request.objetivo().trim(),
-                request.valorAlvo(),
-                request.valorGuardado(),
-                request.prazo()
-        ));
-        return toResponse(created);
+        FinancialGoal goal = new FinancialGoal();
+        goal.setUserId(user.getId());
+        goal.setTitulo(request.titulo().trim());
+        goal.setObjetivo(request.objetivo().trim());
+        goal.setValorAlvo(request.valorAlvo());
+        goal.setValorGuardado(request.valorGuardado() != null ? request.valorGuardado() : BigDecimal.ZERO);
+        goal.setPrazo(request.prazo());
+        return toResponse(cofrinhoRepository.create(goal));
     }
 
     public GoalResponse update(User user, Long id, GoalRequest request) {
-        FinancialGoal updated = cofrinhoRepository.update(user.id(), id, new FinancialGoal(
-                id,
-                user.id(),
-                request.titulo().trim(),
-                request.objetivo().trim(),
-                request.valorAlvo(),
-                request.valorGuardado(),
-                request.prazo()
-        ));
-        return toResponse(updated);
+        FinancialGoal goal = new FinancialGoal();
+        goal.setId(id);
+        goal.setUserId(user.getId());
+        goal.setTitulo(request.titulo().trim());
+        goal.setObjetivo(request.objetivo().trim());
+        goal.setValorAlvo(request.valorAlvo());
+        goal.setValorGuardado(request.valorGuardado() != null ? request.valorGuardado() : BigDecimal.ZERO);
+        goal.setPrazo(request.prazo());
+        return toResponse(cofrinhoRepository.update(user.getId(), id, goal));
     }
 
     public void delete(User user, Long id) {
-        cofrinhoRepository.delete(user.id(), id);
+        cofrinhoRepository.delete(user.getId(), id);
     }
 
     public GoalResponse deposit(User user, Long id, BigDecimal value) {
@@ -69,90 +66,61 @@ public class GoalService {
         if (availableBalance(user).compareTo(value) < 0) {
             throw new ApiException(HttpStatus.BAD_REQUEST, "Saldo disponivel insuficiente");
         }
-        FinancialGoal updated = cofrinhoRepository.update(user.id(), id, new FinancialGoal(
-                goal.id(),
-                goal.userId(),
-                goal.titulo(),
-                goal.objetivo(),
-                goal.valorAlvo(),
-                goal.valorGuardado().add(value),
-                goal.prazo()
-        ));
-        return toResponse(updated);
+        goal.setValorGuardado(goal.getValorGuardado().add(value));
+        return toResponse(cofrinhoRepository.update(user.getId(), id, goal));
     }
 
     public GoalResponse withdraw(User user, Long id, BigDecimal value) {
         FinancialGoal goal = findGoal(user, id);
-        if (goal.valorGuardado().compareTo(value) < 0) {
+        if (goal.getValorGuardado().compareTo(value) < 0) {
             throw new ApiException(HttpStatus.BAD_REQUEST, "Saldo insuficiente no cofrinho");
         }
-
-        FinancialGoal updated = cofrinhoRepository.update(user.id(), id, new FinancialGoal(
-                goal.id(),
-                goal.userId(),
-                goal.titulo(),
-                goal.objetivo(),
-                goal.valorAlvo(),
-                goal.valorGuardado().subtract(value),
-                goal.prazo()
-        ));
-        return toResponse(updated);
+        goal.setValorGuardado(goal.getValorGuardado().subtract(value));
+        return toResponse(cofrinhoRepository.update(user.getId(), id, goal));
     }
 
     private GoalResponse toResponse(FinancialGoal goal) {
-        BigDecimal valorAlvo = goal.valorAlvo() == null ? BigDecimal.ZERO : goal.valorAlvo();
-        BigDecimal valorGuardado = goal.valorGuardado() == null ? BigDecimal.ZERO : goal.valorGuardado();
+        BigDecimal valorAlvo = goal.getValorAlvo() == null ? BigDecimal.ZERO : goal.getValorAlvo();
+        BigDecimal valorGuardado = goal.getValorGuardado() == null ? BigDecimal.ZERO : goal.getValorGuardado();
         BigDecimal valorRestante = valorAlvo.subtract(valorGuardado).max(BigDecimal.ZERO);
-        BigDecimal valorMensalSugerido = monthlyRequired(valorRestante, goal.prazo());
+        BigDecimal valorMensalSugerido = monthlyRequired(valorRestante, goal.getPrazo());
         double percentual = valorAlvo.compareTo(BigDecimal.ZERO) > 0
                 ? valorGuardado.divide(valorAlvo, 4, RoundingMode.HALF_UP)
                     .multiply(BigDecimal.valueOf(100)).doubleValue()
                 : 0;
-
         return new GoalResponse(
-                goal.id(),
-                goal.titulo(),
-                goal.objetivo(),
-                valorAlvo,
-                valorGuardado,
-                valorRestante,
-                valorMensalSugerido,
-                Math.min(percentual, 999.0),
-                goal.prazo(),
+                goal.getId(), goal.getTitulo(), goal.getObjetivo(),
+                valorAlvo, valorGuardado, valorRestante, valorMensalSugerido,
+                Math.min(percentual, 999.0), goal.getPrazo(),
                 valorGuardado.compareTo(valorAlvo) >= 0
         );
     }
 
     private FinancialGoal findGoal(User user, Long id) {
-        return cofrinhoRepository.findByUserId(user.id()).stream()
-                .filter(goal -> goal.id().equals(id))
+        return cofrinhoRepository.findByUserId(user.getId()).stream()
+                .filter(g -> g.getId().equals(id))
                 .findFirst()
                 .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND, "Cofrinho nao encontrado"));
     }
 
     public BigDecimal totalGuardado(User user) {
-        return cofrinhoRepository.findByUserId(user.id()).stream()
-                .map(goal -> goal.valorGuardado() == null ? BigDecimal.ZERO : goal.valorGuardado())
+        return cofrinhoRepository.findByUserId(user.getId()).stream()
+                .map(g -> g.getValorGuardado() == null ? BigDecimal.ZERO : g.getValorGuardado())
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public BigDecimal availableBalance(User user) {
-        BigDecimal totalTransactions = transacaoRepository.findByUserId(user.id()).stream()
-                .map(transaction -> transaction.tipo().name().equals("RECEITA")
-                        ? transaction.valor()
-                        : transaction.valor().negate())
+        BigDecimal total = transacaoRepository.findByUserId(user.getId()).stream()
+                .map(t -> t.getTipo().name().equals("RECEITA") ? t.getValor() : t.getValor().negate())
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
-        return totalTransactions.subtract(totalGuardado(user));
+        return total.subtract(totalGuardado(user));
     }
 
     private BigDecimal monthlyRequired(BigDecimal remaining, LocalDate dueDate) {
         if (remaining.compareTo(BigDecimal.ZERO) <= 0) return BigDecimal.ZERO;
         if (dueDate == null) return remaining;
-
         long months = Math.max(1, ChronoUnit.MONTHS.between(
-                LocalDate.now().withDayOfMonth(1),
-                dueDate.withDayOfMonth(1)
-        ) + 1);
+                LocalDate.now().withDayOfMonth(1), dueDate.withDayOfMonth(1)) + 1);
         return remaining.divide(BigDecimal.valueOf(months), 2, RoundingMode.HALF_UP);
     }
 }
